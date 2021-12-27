@@ -1,0 +1,16 @@
+{
+  "name": "base",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "wsrun --parallelbuild",
+    "serve": "wsrun --parallel serve",
+    "install:all": "wsrun --parallel install",
+    "format": "wsrun --parallel format",
+    "start": "concurrently \"wsrun --parallel start\""
+  },
+  "private": true,
+  "devDependencies": {
+    "concurrently": "^6.5.1",
+    "wsrun": "^5.2.4"
+  }
+}
