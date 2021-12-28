@@ -13,7 +13,7 @@ export const NavBar = (): JSX.Element => (
       </li>
       &nbsp;|&nbsp;
       <li style={{ display: "inline" }}>
-        <a href="/test" onClick={navigateToUrl}>
+        <a href="/react" onClick={navigateToUrl}>
           React Application
         </a>
       </li>

@@ -1,5 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const { ModuleFederationPlugin } = require("webpack").container;
 
 const deps = require("./package.json").dependencies;
 module.exports = {
@@ -15,9 +15,7 @@ module.exports = {
     port: 3002,
     historyApiFallback: true,
   },
-  externals: {
-    "single-spa": "single-spa",
-  },
+
   module: {
     rules: [
       {
@@ -44,7 +42,6 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       name: "body",
-      library: { type: "var", name: "body" },
       filename: "remoteEntry.js",
       remotes: {},
       exposes: {

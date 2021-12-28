@@ -13,7 +13,6 @@ const devConfig = {
   plugins: [
     new ModuleFederationPlugin({
       name: "navigation",
-      library: { type: "var", name: "navigation" },
       filename: "remoteEntry.js",
       exposes: {
         "./NavBar": "./src/NavBar",

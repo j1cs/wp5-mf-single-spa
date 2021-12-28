@@ -1,5 +1,4 @@
 const { merge } = require("webpack-merge");
-const HtmlWebpackTagsPlugin = require("html-webpack-tags-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
 const commonConfig = require("./webpack.common");
 const deps = require("../package.json").dependencies;
@@ -12,19 +11,12 @@ const devConfig = {
     historyApiFallback: true,
   },
   plugins: [
-    new HtmlWebpackTagsPlugin({
-      tags: [
-        "http://localhost:3001/remoteEntry.js",
-        "http://localhost:3002/remoteEntry.js",
-      ],
-    }),
     new ModuleFederationPlugin({
-      name: "root",
-      library: { type: "var", name: "root" },
+      name: "shell",
       filename: "remoteEntry.js",
       remotes: {
-        navigation: "navigation",
-        body: "body",
+        navigation: "navigation@http://localhost:3001/remoteEntry.js",
+        body: "body@http://localhost:3002/remoteEntry.js",
       },
       shared: [
         {
