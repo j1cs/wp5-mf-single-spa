@@ -15,8 +15,7 @@ const devConfig = {
       name: "shell",
       filename: "remoteEntry.js",
       remotes: {
-        navigation: "navigation@http://localhost:3001/remoteEntry.js",
-        body: "body@http://localhost:3002/remoteEntry.js",
+        body: "body@http://localhost:3001/remoteEntry.js",
       },
       shared: [
         {
