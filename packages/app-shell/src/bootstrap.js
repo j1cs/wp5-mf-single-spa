@@ -15,4 +15,10 @@ registerApplication(
   () => true
 );
 
+registerApplication(
+  "section",
+  () => import("section/App"),
+  () => true
+);
+
 start();

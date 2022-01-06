@@ -16,6 +16,7 @@ const devConfig = {
       filename: "remoteEntry.js",
       remotes: {
         body: "body@http://localhost:3001/remoteEntry.js",
+        section: "section@http://localhost:3002/remoteEntry.js",
       },
       shared: [
         {
