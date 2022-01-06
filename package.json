@@ -1,9 +1,7 @@
 {
   "name": "new-mf-base",
   "version": "1.0.0",
-  "private": true,"workspace": [
-    "packages/*"
-  ],
+  "private": true,
   "scripts": {
     "build": "wsrun --parallel build",
     "serve": "wsrun --parallel serve",
