@@ -1,12 +1,13 @@
 {
-  "name": "new-mf-base",
+  "name": "base",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "wsrun --parallel build",
+    "build": "concurrently \"wsrun --parallel build\"",
     "serve": "wsrun --parallel serve",
     "install:all": "wsrun --parallel install",
     "format": "wsrun --parallel format",
+    "upgrade:packages": "wsrun --parallel upgrade:packages",
     "start": "concurrently \"wsrun --parallel start\""
   },
   "devDependencies": {

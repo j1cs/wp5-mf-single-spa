@@ -3,11 +3,18 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "webpack serve --open --config config/webpack.dev.js",
-    "build": "webpack --config config/webpack.prod.js",
-    "lint": "eslint src --ext js",
+    "start": "webpack serve --config ./config/webpack.dev.js",
+    "build": "webpack --config ./config/webpack.prod.js",
+    "serve": "serve dist -l 3000",
+    "test": "jest src --passWithNoTests --maxWorkers=50%",
+    "test:coverage": "jest src --passWithNoTests --maxWorkers=50% --coverage",
+    "lint": "eslint src --ext js,ts,tsx",
     "format": "prettier --write .",
-    "check-format": "prettier --check ."
+    "check-format": "prettier --check .",
+    "upgrade:packages": "npx npm-check-updates -u --packageFile package.json"
+  },
+  "dependencies": {
+    "single-spa": "^5.9.3"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
@@ -17,14 +24,19 @@
     "@babel/runtime": "^7.16.7",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
+    "dotenv": "^10.0.0",
+    "dotenv-webpack": "^7.0.3",
     "eslint": "^8.6.0",
     "eslint-config-important-stuff": "^1.1.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
+    "html-webpack-tags-plugin": "^3.0.2",
+    "jest": "^27.4.7",
+    "path-to-regexp": "^6.2.0",
     "prettier": "^2.5.1",
     "prettier-quick": "^0.0.5",
-    "single-spa": "^5.9.3",
+    "serve": "^13.0.2",
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.7.2",
