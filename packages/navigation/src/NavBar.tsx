@@ -4,16 +4,18 @@ import { createStore, Store } from "redux";
 import singleSpaReact from "single-spa-react";
 import { Reducer } from "./store/reducer";
 import { GlobalStore, IGlobalStore } from "redux-micro-frontend";
-import { navigateToUrl, AppProps } from "single-spa";
+import { navigateToUrl } from "single-spa";
+
+interface DefaultProps {}
 
 interface IState {
   counter: number;
 }
-class NavBar extends React.Component<AppProps> {
+class NavBar extends React.Component<DefaultProps> {
   globalStore: IGlobalStore;
   state: IState;
   store: Store;
-  constructor(props: AppProps) {
+  constructor(props: DefaultProps) {
     super(props);
     this.state = {
       counter: 0,
