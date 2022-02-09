@@ -54,7 +54,7 @@ const webpackProduction = merge(webpackBaseConfig, {
             comments: false,
             ascii_only: true,
           },
-        }
+        },
       }),
     ],
   },

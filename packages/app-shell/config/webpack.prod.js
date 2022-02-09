@@ -5,11 +5,13 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const commonConfig = require("./webpack.common");
 const deps = require("../package.json").dependencies;
 
-const { APP_NAME, NAVIGATION_APP, BODY_APP, SECTION_APP } = process.env;
+const { APP_NAME, NAVIGATION_APP, BODY_APP, SECTION_APP, APP_URL } =
+  process.env;
 
 const prodConfig = {
   mode: "production",
   output: {
+    publicPath: APP_URL || "http://localhost:3000/",
     path: path.resolve(process.cwd(), "dist"),
     filename: "[name].[contenthash].js",
   },

@@ -5,7 +5,12 @@ import singleSpaReact from "single-spa-react";
 import { Reducer } from "./store/reducer";
 import { GlobalStore, IGlobalStore } from "redux-micro-frontend";
 import { navigateToUrl } from "single-spa";
-
+import {
+  APP_STORE_NAME,
+  APP_STORE_NAME_PARTNER,
+} from "../constants/environment";
+console.log(APP_STORE_NAME, APP_STORE_NAME_PARTNER);
+console.log("test");
 interface DefaultProps {}
 
 interface IState {
@@ -23,13 +28,13 @@ class NavBar extends React.Component<DefaultProps> {
     this.counterChanged = this.counterChanged.bind(this);
     this.globalStore = GlobalStore.Get();
     this.store = createStore(Reducer);
-    this.globalStore.RegisterStore("NavBarApp", this.store, [
+    this.globalStore.RegisterStore(APP_STORE_NAME || "NavBarApp", this.store, [
       GlobalStore.AllowAll,
     ]);
     try {
       this.globalStore.SubscribeToPartnerState(
-        "NavBarApp",
-        "BodyApp",
+        APP_STORE_NAME || "NavBarApp",
+        APP_STORE_NAME_PARTNER || "BodyApp",
         this.counterChanged
       );
     } catch (error) {

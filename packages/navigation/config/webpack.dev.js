@@ -3,16 +3,18 @@ const { ModuleFederationPlugin } = require("webpack").container;
 const commonConfig = require("./webpack.common");
 const deps = require("../package.json").dependencies;
 
+const { APP_NAME, APP_PORT } = process.env;
+
 const devConfig = {
   mode: "development",
   devtool: "source-map",
   devServer: {
-    port: 3001,
+    port: APP_PORT || 3001,
     historyApiFallback: true,
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "navigation",
+      name: APP_NAME || "navigation",
       filename: "remoteEntry.js",
       exposes: {
         "./NavBar": "./src/NavBar",
@@ -34,4 +36,4 @@ const devConfig = {
   ],
 };
 
-module.exports = merge(commonConfig, devConfig);
+module.exports = (env, argv) => merge(commonConfig(env, argv), devConfig);

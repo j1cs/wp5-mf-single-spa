@@ -14,9 +14,13 @@ const {
   includePathFromAssets,
   includePathFromSrc,
 } = require('./paths');
+const path = require('path');
 
 const { ModuleFederationPlugin } = webpack.container;
-dotenv.config();
+
+dotenv.config({
+  path: path.join(__dirname, process.env.NODE_ENV ? `../.env.${process.env.NODE_ENV}` : '../.env'),
+});
 
 // eslint-disable-next-line camelcase
 const { APP_NAME, MF_NAME, npm_package_config_analyze } = process.env;
@@ -27,7 +31,7 @@ module.exports = {
   name: APP_NAME,
 
   output: {
-    uniqueName: APP_NAME,
+    uniqueName: APP_NAME || 'section',
     filename: 'js/[name].[contenthash].js',
     chunkFilename: 'js/[name].[contenthash].chunk.js',
     path: BUILD_DIR,

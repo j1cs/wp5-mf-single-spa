@@ -1,4 +1,5 @@
 import React from "react";
+import "twin.macro";
 interface ICounterProps {
   header: string;
   count: number;
@@ -12,8 +13,18 @@ export class Counter extends React.Component<ICounterProps> {
       <div>
         <h2>{this.props.header}</h2>
         <span>{this.props.count}</span>
-        <button onClick={this.props.increment}>+</button>
-        <button onClick={this.props.decrement}>-</button>
+        <button
+          tw="relative bg-blue-500 text-white font-bold overflow-hidden"
+          onClick={this.props.increment}
+        >
+          +
+        </button>
+        <button
+          tw="relative bg-blue-500 text-white font-bold overflow-hidden"
+          onClick={this.props.decrement}
+        >
+          -
+        </button>
       </div>
     );
   }

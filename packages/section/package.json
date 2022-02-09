@@ -15,6 +15,7 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config ./webpack/webpack.production.js",
+    "build:dev": "cross-env NODE_ENV=development webpack --config ./webpack/webpack.production.js",
     "serve": "npx serve dist -l 3003",
     "check-types": "tsc",
     "lint:fix": "eslint . --fix",

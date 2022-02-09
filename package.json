@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "concurrently \"wsrun --parallel build\"",
+    "build:dev": "concurrently \"wsrun --parallel build:dev\"",
     "serve": "wsrun --parallel serve",
     "install:all": "wsrun --parallel install",
     "format": "wsrun --parallel format",

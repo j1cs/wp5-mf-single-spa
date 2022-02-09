@@ -1,10 +1,20 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
+const Dotenv = require("dotenv-webpack");
+const dotenv = require("dotenv");
+const path = require("path");
+dotenv.config({
+  path: path.join(
+    __dirname,
+    process.env.NODE_ENV ? `./.env.${process.env.NODE_ENV}` : "../.env"
+  ),
+});
 
+const { APP_NAME, APP_URL, APP_PORT } = process.env;
 const deps = require("./package.json").dependencies;
-module.exports = {
+module.exports = (env, argv) => ({
   output: {
-    publicPath: "http://localhost:3002/", // add to .env
+    publicPath: APP_URL || "http://localhost:3002/",
   },
   devtool: "source-map",
   resolve: {
@@ -12,7 +22,7 @@ module.exports = {
   },
 
   devServer: {
-    port: 3002,
+    port: APP_PORT || 3002,
     historyApiFallback: true,
   },
 
@@ -40,10 +50,15 @@ module.exports = {
   },
 
   plugins: [
+    new Dotenv({
+      path: argv.mode ? `.env.${argv.mode}` : ".env",
+    }),
     new ModuleFederationPlugin({
-      name: "body",
+      name: APP_NAME || "body",
       filename: "remoteEntry.js",
-      remotes: {},
+      remotes: {
+        parcel: "parcel@http://localhost:3004/remoteEntry.js",
+      },
       exposes: {
         "./App": "./src/App",
       },
@@ -63,4 +78,4 @@ module.exports = {
       template: "./src/index.html",
     }),
   ],
-};
+});

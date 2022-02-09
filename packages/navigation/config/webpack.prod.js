@@ -5,16 +5,19 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const commonConfig = require("./webpack.common");
 const deps = require("../package.json").dependencies;
 
+const { APP_URL, APP_NAME } = process.env;
+
 const prodConfig = {
   mode: "production",
   output: {
+    publicPath: APP_URL || "http://localhost:3001/",
     path: path.resolve(process.cwd(), "dist"),
     filename: "[name].[contenthash].js",
   },
   plugins: [
     new CleanWebpackPlugin(),
     new ModuleFederationPlugin({
-      name: "navigation",
+      name: APP_NAME || "navigation",
       filename: "remoteEntry.js",
       exposes: {
         "./NavBar": "./src/NavBar",
@@ -36,4 +39,4 @@ const prodConfig = {
   ],
 };
 
-module.exports = merge(commonConfig, prodConfig);
+module.exports = (env, argv) => merge(commonConfig(env, argv), prodConfig);

@@ -2,12 +2,12 @@
   "name": "body",
   "version": "1.0.0",
   "scripts": {
-    "build": "webpack --mode production",
-    "build:dev": "webpack --mode development",
+    "build": "cross-env NODE_ENV=production webpack --mode production",
+    "build:dev": "cross-env NODE_ENV=development webpack --mode development",
     "build:start": "cd dist && PORT=3002 npx serve",
     "serve": "npx serve dist -l 3002",
-    "start": "webpack serve --mode development",
-    "start:live": "webpack serve --mode development --live-reload --hot",
+    "start": "cross-env NODE_ENV=development webpack serve --mode development",
+    "start:live": "cross-env NODE_ENV=development webpack serve --mode development --live-reload --hot",
     "lint": "eslint src --ext js,ts,tsx",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
@@ -20,11 +20,19 @@
     "@babel/preset-env": "^7.16.7",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
+    "@emotion/babel-preset-css-prop": "^11.2.0",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@types/node": "^17.0.14",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "autoprefixer": "^10.4.1",
     "babel-loader": "^8.2.3",
+    "babel-plugin-macros": "^3.1.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.5.1",
+    "dotenv": "^15.0.0",
+    "dotenv-webpack": "^7.1.0",
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-ts-react-important-stuff": "^3.0.0",
@@ -45,6 +53,12 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "redux-micro-frontend": "^1.2.0",
-    "single-spa-react": "^4.6.0"
+    "single-spa-react": "^4.6.0",
+    "twin.macro": "^2.8.2"
+  },
+  "babelMacros": {
+    "twin": {
+      "preset": "emotion"
+    }
   }
 }

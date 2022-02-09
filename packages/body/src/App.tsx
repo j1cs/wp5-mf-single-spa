@@ -5,9 +5,12 @@ import { Store } from "redux";
 import { Reducer } from "./store/reducer";
 import { IncrementCounter, DecrementCounter } from "./store/action";
 import singleSpaReact from "single-spa-react";
+import Parcel from "single-spa-react/parcel";
+import parcel from "parcel/App";
 
-import "./index.scss";
 import { Counter } from "./Counter";
+import { APP_STORE_NAME } from "../constants/environment";
+console.log(APP_STORE_NAME);
 
 interface DefaultProps {}
 interface IState {
@@ -26,13 +29,20 @@ class App extends React.Component<DefaultProps> {
     this.decrementCounter = this.decrementCounter.bind(this);
     this.updateState = this.updateState.bind(this);
     this.globalStore = GlobalStore.Get(false);
-    // BodyApp must be .env file
-    this.store = this.globalStore.CreateStore("BodyApp", Reducer, []);
-    this.globalStore.RegisterGlobalActions("BodyApp", [
+
+    this.store = this.globalStore.CreateStore(
+      APP_STORE_NAME || "BodyApp",
+      Reducer,
+      []
+    );
+    this.globalStore.RegisterGlobalActions(APP_STORE_NAME || "BodyApp", [
       "INCREMENT",
       "DECREMENT",
     ]);
-    this.globalStore.SubscribeToGlobalState("BodyApp", this.updateState);
+    this.globalStore.SubscribeToGlobalState(
+      APP_STORE_NAME || "BodyApp",
+      this.updateState
+    );
   }
 
   incrementCounter() {
@@ -62,6 +72,7 @@ class App extends React.Component<DefaultProps> {
           increment={this.incrementCounter}
           decrement={this.decrementCounter}
         />
+        <Parcel config={parcel} wrapWith={"div"} />
       </div>
     );
   }
