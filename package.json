@@ -12,7 +12,7 @@
     "start": "concurrently \"wsrun --parallel start\""
   },
   "devDependencies": {
-    "concurrently": "^7.0.0",
+    "concurrently": "^9.0.1",
     "wsrun": "^5.2.4"
   }
 }

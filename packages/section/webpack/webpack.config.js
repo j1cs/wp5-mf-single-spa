@@ -28,7 +28,7 @@ const { APP_NAME, MF_NAME, npm_package_config_analyze } = process.env;
 const extraPlugins = npm_package_config_analyze === 'true' ? [new BundleAnalyzerPlugin()] : [];
 
 module.exports = {
-  name: APP_NAME,
+  name: APP_NAME || "section",
 
   output: {
     uniqueName: APP_NAME || 'section',
@@ -135,7 +135,7 @@ module.exports = {
     }),
 
     new ModuleFederationPlugin({
-      name: MF_NAME,
+      name: MF_NAME || "section",
       filename: 'js/remoteEntry.js',
       exposes: mf.exposes,
       remotes: mf.remotes,
