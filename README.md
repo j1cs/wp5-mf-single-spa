@@ -1,4 +1,12 @@
-# Micro Frontend Base
+# Attention
+
+This project is completed outdated. You should use it just as example don't follow it verbatim.
+
+I recommend  
+https://rspack.rs/  
+https://single-spa.js.org/docs/getting-started-overview
+
+## Micro Frontend Base
 
 ## Get Started
 `$ git clone --recursive https://github.com/j1cs/wp5-mf-single-spa`
